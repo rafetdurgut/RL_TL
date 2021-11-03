@@ -27,7 +27,7 @@ operator_selectors = [
        ]
 for operator_selector in operator_selectors: 
     for run in range(runtime):
-        abc = BinaryABC(problem, operator_pool, operator_selector, pop_size=2, maxFE=10,limit=100)
+        abc = BinaryABC(problem, operator_pool, operator_selector, pop_size=20, maxFE=40*max(problem.m, problem.n),limit=100)
         for operator in operator_pool:
             operator.set_algorithm(abc)
         operator_selector.set_algorithm(abc, run)
