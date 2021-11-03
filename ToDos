@@ -1,0 +1,25 @@
+https://docs.google.com/spreadsheets/d/1Z-OS5XR7KotIHTGxzJMzeJMPE8CiNDgZ-IaCHmuTyYI/edit?usp=sharing
+
+    1) Operatörlerin seçim değişimlerinin başarıları için gösterge. aradaki değişim sonrası başarı nasıl değişmiş? Seçim ile fitness birlikte gösterilebilir?
+
+1) Yakınsamaya ne kadar katkıda bulunuyor?
+
+reward = (PD * (improvement/Gbest))
+
+RL:
+1) Onemax
+2) 0/1KP
+3) SUKP
+4) MDKP
+
+1) Farklı distance metrics ve objective function
+2) Nokta yerine neighborhood (komşularının oluşturduğu cluster ile o cluster arasındaki uzaklık)
+
+0) SUKP Adaptive
+1) SUKP CLRL
+2) Learning Adaptive OS
+
+#Değişik reward function
+Fikirler:
+1) Dynamic Adaptive
+
