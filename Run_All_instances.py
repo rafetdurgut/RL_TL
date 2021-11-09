@@ -13,8 +13,8 @@ import time
 def thread_function(conf):
     time.sleep(1)
     print(conf)
-    os.system(f"start cmd /k Python ./Run_SUKP_RL.py {conf}")
+    os.system(f"Python ./Run_SUKP_RL.py {conf}")
 
-for p_no in range(30):
+for p_no in range(5):
     x = threading.Thread(target=thread_function, args=(p_no,))
     x.start()
