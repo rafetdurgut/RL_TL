@@ -15,6 +15,6 @@ def thread_function(conf):
     print(conf)
     os.system(f"Python ./Run_SUKP_RL.py {conf}")
 
-for p_no in range(5):
+for p_no in range(30):
     x = threading.Thread(target=thread_function, args=(p_no,))
     x.start()
