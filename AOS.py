@@ -208,10 +208,13 @@ class ClusterRL(abstractOperatorSelection):
             #self.iter_rewards[op_no][self.iteration] += r + self.gama * self.hamming_distance(self.clusters[op_no], candidate.solution)
 
     def update_cluster(self, op, candidate):
+        if self.learning_mode == 1 and self.run_number>0:
+            return
         if self.total_succ_counters[op] == 0:
             for i in range(self.algorithm.problem.dimension):
                 self.clusters[op][i] = candidate.solution[i]
             return
+        
         for i in range(self.algorithm.problem.dimension):
             self.clusters[op][i] = self.clusters[op][i] / (self.timer[op] + 1) + candidate.solution[i] / (
                         self.timer[op] + 1)
