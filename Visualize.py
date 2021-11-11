@@ -8,13 +8,14 @@ import numpy as np
 
 plt.style.use('seaborn-bright')
 operator_size = 3
-alpha = 0.1
-gama = 0.1
+alpha = 0.5
+gama = 0.3
 run = 0
-w = 5
+w = 25
 pmin=0.1
-reward = 'average'
-
+learning = 2
+reward = 'extreme'
+pName = 'sukp 200_185_0.10_0.75.txt'
 def get_data(fileName):
     datas = ([[] for _ in range(operator_size)])
     with open(fileName) as csv_file:
@@ -54,7 +55,7 @@ def draw_data_triple(value, title,y_label, equal=1):
     for ind, o in enumerate(aos):
         print(o)
         if o == "CLRL":
-            file_name = f"results/{value}-{o}-{operator_size}-{reward}-{pmin}-{w}-{alpha}-{gama}.csv"
+            file_name = f"results/{value}-{o}-{operator_size}-{reward}-{pmin}-{w}-{alpha}-{gama}-{learning}-{pName}.csv"
         else:
             file_name = f"results/{value}-{o}-{operator_size}-{reward}-{pmin}-{w}-{alpha}.csv"
         credits = get_data(file_name)

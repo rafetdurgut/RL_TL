@@ -13,17 +13,23 @@ def get_best_data(fileName, operator_size):
     with open(fileName) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         line_count = 0
-        previous_iter = 0
+        previous_iter = -1
         previous_val = 0
         for row in csv_reader:
             if len(row) > 0:
                 iteration, val = row
-                if iteration < previous_iter:
+                
+                
+                if iteration <= previous_iter:
                     datas.append((previous_val))
+                    previous_val = val
+                    previous_iter = 0
                 else:
                     previous_val = val
-                previous_iter = iteration
+                    previous_iter = iteration
         datas.append((previous_val))
+        while len(datas)<30:
+            datas.append(datas[-1])
     return datas
 import numpy as np
 parameters = {"Method": ["average", "extreme"], "W": [5, 25], "Pmin": [0.1, 0.2], "Alpha": [0.1, 0.5, 0.9]}
@@ -139,3 +145,4 @@ for i in range(10):
     ranks_best[i] = rankdata([-1*tablo3[i][0],-1*tablo3[i][3],-1*tablo3[i][6]],method='dense')
     a = np.mean(ranks_mean,axis=0)
     b = np.mean(ranks_best,axis=0)
+

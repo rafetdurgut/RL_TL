@@ -166,7 +166,7 @@ class UpperConfidenceBound(abstractOperatorSelection):
         return ['UCB', self.operator_size,  self.reward_type, self.Pmin, self.W, self.alpha,self.learning_mode]
 
 class ClusterRL(abstractOperatorSelection):
-    def __init__(self, operator_size, reward_type, W, alpha,  Pmin, gama = 0,learning_mode=0):
+    def __init__(self, operator_size, reward_type, W, alpha,  Pmin, gama = 0.3,learning_mode=0):
         super(ClusterRL, self).__init__(operator_size, reward_type, W, alpha=alpha, beta=0.1, Pmin=Pmin,learning_mode=0)
         self.operator_size = operator_size
         self.learning_mode = learning_mode

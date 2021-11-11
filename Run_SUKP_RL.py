@@ -20,9 +20,9 @@ runtime = 30
 operator_pool = [disABC(0.9, 0.1), ibinABC(0.3, 0.1),  binABC()]
 
 operator_selectors = [
-       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,learning_mode=0),
-       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,learning_mode=1),
-       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,learning_mode=2)
+       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,0.3,learning_mode=0),
+       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,0.3,learning_mode=1),
+       ClusterRL(len(operator_pool), 'extreme', 25,0.5, 0.1,0.3,learning_mode=2)
        # ProbabilityMatching(len(operator_pool),'average',W=10,learning_mode=1),
        # ProbabilityMatching(len(operator_pool),'average',W=10,learning_mode=2)
        
