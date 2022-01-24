@@ -167,7 +167,7 @@ class UpperConfidenceBound(abstractOperatorSelection):
 
 class ClusterRL(abstractOperatorSelection):
     def __init__(self, operator_size, reward_type, W, alpha,  Pmin, gama = 0.3,learning_mode=0):
-        super(ClusterRL, self).__init__(operator_size, reward_type, W, alpha=alpha, beta=0.1, Pmin=Pmin,learning_mode=0)
+        super(ClusterRL, self).__init__(operator_size, reward_type, W, alpha=alpha, beta=0.1, Pmin=Pmin,learning_mode=learning_mode)
         self.operator_size = operator_size
         self.learning_mode = learning_mode
         self.alpha = alpha
@@ -223,20 +223,14 @@ class ClusterRL(abstractOperatorSelection):
         return np.count_nonzero(y != (x>0.5))
 
     def operator_selection(self, candidate):
-        if np.all(self.total_succ_counters) == 0:
+        if (np.all(self.total_succ_counters) == 0) or np.random.rand() < self.Pmin:
             for i in range(self.operator_size):
-                self.probabilities[i] = 1 / self.operator_size
+                self.probabilities[i] = 1
             return self.roulette_wheel()
-        values = [-1 * self.credits[ind][self.iteration] + self.gama * self.hamming_distance(
-            self.clusters[ind], candidate.solution) for ind in range(self.operator_size)]
+        values = [-1 * self.credits[ind][-1] + self.gama * self.distance(ind, candidate) for ind in range(self.operator_size)]
         best_op = np.argmin(values)
-        for i in range(self.operator_size):
-            if i == best_op:
-                self.probabilities[i] = (1 - (self.operator_size - 1) * self.Pmin)
-            else:
-                self.probabilities[i] = self.Pmin
-        op = self.roulette_wheel()
-        return op
+        return best_op
+       
 
     def __conf__(self):
         return ['CLRL', self.operator_size,  self.reward_type, self.Pmin, self.W, self.alpha, self.gama,self.learning_mode]
